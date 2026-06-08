@@ -8,6 +8,8 @@ draft = false
 
 This is the opening paragraph of the article.
 
+![We Pray](/letsgoirishblog/images/wepray.jpg)
+
 ## A Picture
 
 ![Notre Dame Stadium](/letsgoirishblog/images/wepray.jpg)
