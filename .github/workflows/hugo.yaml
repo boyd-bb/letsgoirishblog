@@ -18,11 +18,18 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     env:
       HUGO_VERSION: 0.147.9
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Enable GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Install Hugo
         run: |
@@ -30,22 +37,22 @@ jobs:
           tar -xzf hugo.tar.gz
           sudo mv hugo /usr/local/bin/
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build with Hugo
+      - name: Build site
         run: hugo --gc --minify --baseURL "https://boyd-bb.github.io/letsgoirishblog/"
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
   deploy:
     needs: build
+
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
+
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
