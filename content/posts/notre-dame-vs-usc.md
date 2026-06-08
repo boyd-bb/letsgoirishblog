@@ -8,7 +8,7 @@ draft = false
 
 This is the opening paragraph of the article.
 
-![We Pray](/letsgoirishblog/images/wepray.jpg)
+![We Pray](https://boyd-bb.github.io/letsgoirishblog/images/wepray.jpg)
 
 ## A Picture
 
