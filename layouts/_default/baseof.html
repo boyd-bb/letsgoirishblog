@@ -2,11 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ .Site.Title }}</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b3d2e;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+
+    a {
+      color: #0b3d2e;
+      font-weight: bold;
+    }
+
+    article {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+    <p>Notre Dame thoughts, stories, and game-day notes.</p>
   </header>
 
   <main>
