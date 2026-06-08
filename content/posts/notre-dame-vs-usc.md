@@ -8,15 +8,10 @@ draft = false
 
 This is the opening paragraph of the article.
 
+## A Picture
 <p align="center">
   <img src="https://boyd-bb.github.io/letsgoirishblog/images/wepray.jpg" alt="We Pray" width="500">
 </p>
-
-![We Pray](https://boyd-bb.github.io/letsgoirishblog/images/wepray.jpg)
-
-## A Picture
-
-![Notre Dame Stadium](/letsgoirishblog/images/wepray.jpg)
 
 ## Audio
 
