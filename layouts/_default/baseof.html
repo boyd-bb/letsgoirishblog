@@ -7,57 +7,120 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #f7f7f7;
       color: #222;
-      line-height: 1.6;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
     }
 
     header {
-      background: #0b3d2e;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #ddd;
+      background: white;
     }
 
-    header a {
-      color: white;
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .site-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0b3d2e;
       text-decoration: none;
     }
 
+    .nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+
+    .hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      line-height: 1.1;
+      margin-bottom: .5rem;
+    }
+
+    .hero p {
+      color: #555;
+      font-size: 1.1rem;
+      max-width: 620px;
+    }
+
     main {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
-
-    h1, h2, h3 {
-      line-height: 1.2;
-    }
-
-    a {
-      color: #0b3d2e;
-      font-weight: bold;
+      padding-bottom: 4rem;
     }
 
     article {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 1rem;
+      background: white;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    article h2,
+    article h3 {
+      margin-top: 0;
+    }
+
+    article a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    article a:hover {
+      color: #0b3d2e;
+    }
+
+    .post-meta {
+      color: #777;
+      font-size: .9rem;
+      margin-bottom: .75rem;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 2rem 0;
+      color: #666;
+      font-size: .9rem;
+      background: white;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
-    <p>Notre Dame thoughts, stories, and game-day notes.</p>
+    <div class="wrap nav">
+      <a class="site-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+      <nav>
+        <a href="{{ .Site.BaseURL }}">Home</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="wrap">
     {{ block "main" . }}{{ end }}
   </main>
+
+  <footer>
+    <div class="wrap">
+      © {{ now.Format "2006" }} {{ .Site.Title }}
+    </div>
+  </footer>
 </body>
 </html>
