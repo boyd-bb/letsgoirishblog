@@ -10,7 +10,7 @@ This is the opening paragraph of the article.
 
 ## A Picture
 
-![Notre Dame Stadium](/images/wepray.jpg)
+![Notre Dame Stadium](/letsgoirishblog/images/wepray.jpg)
 
 ## Audio
 
