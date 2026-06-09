@@ -38,7 +38,7 @@ jobs:
           sudo mv hugo /usr/local/bin/
 
       - name: Build site
-        run: hugo --gc --minify --baseURL "https://boyd-bb.github.io/letsgoirishblog/"
+       run: hugo --gc --minify --baseURL "https://blog.letsgo.irish/"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
