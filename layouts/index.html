@@ -1,17 +1,9 @@
 {{ define "main" }}
 
-{{ $latest := first 1 (where site.RegularPages "Section" "editions").ByDate.Reverse }}
+{{ $latest := first 1 ((where site.RegularPages "Section" "editions").ByDate.Reverse) }}
 
 {{ range $latest }}
-
-<section class="hero">
-  <h1>{{ .Title }}</h1>
-</section>
-
-<article>
   {{ .Content }}
-</article>
-
 {{ end }}
 
 {{ end }}
