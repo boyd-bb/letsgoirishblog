@@ -1,50 +1,54 @@
 name: Deploy Hugo site to Pages
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-  schedule:
-    - cron: '0 13 * * *'
+push:
+branches:
+- main
+workflow_dispatch:
+schedule:
+- cron: '0 13 * * *'
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+contents: read
+pages: write
+id-token: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+build:
+runs-on: ubuntu-latest
 
-    env:
-      HUGO_VERSION: 0.147.9
+```
+env:
+  HUGO_VERSION: 0.147.9
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
 
-      - name: Install Hugo
-        run: |
-          wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz
-          tar -xzf hugo.tar.gz
-          sudo mv hugo /usr/local/bin/
+  - name: Install Hugo
+    run: |
+      wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz
+      tar -xzf hugo.tar.gz
+      sudo mv hugo /usr/local/bin/
 
-      - name: Build site
-        run: hugo --gc --minify --baseURL "https://blog.letsgo.irish/"
+  - name: Build site
+    run: hugo --gc --minify --baseURL "https://blog.letsgo.irish/" --cleanDestinationDir
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
+  - name: Upload Pages artifact
+    uses: actions/upload-pages-artifact@v3
+    with:
+      path: public
+```
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
+deploy:
+needs: build
+runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
+```
+environment:
+  name: github-pages
 
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+steps:
+  - name: Deploy to GitHub Pages
+    uses: actions/deploy-pages@v4
+```
