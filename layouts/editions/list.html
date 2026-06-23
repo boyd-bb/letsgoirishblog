@@ -5,30 +5,98 @@
 <p>Browse previous Daily Irish front pages.</p>
 
 <style>
-  .archive-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: .75rem;
+  .year-archive {
     margin-top: 2rem;
   }
 
-  .archive-link {
-    display: block;
-    padding: .75rem 1rem;
-    border: 1px solid #374151;
-    border-radius: 10px;
+  .months-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .month-card {
     background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 14px;
+    padding: 1rem;
+  }
+
+  .month-card h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: .35rem;
+    font-size: .9rem;
+  }
+
+  .day-name {
+    color: #9ca3af;
+    text-align: center;
+    font-size: .75rem;
+    font-weight: 700;
+  }
+
+  .day {
+    text-align: center;
+    padding: .35rem 0;
+    border-radius: 6px;
+    color: #6b7280;
+  }
+
+  .day a {
+    display: block;
+    color: #ffffff;
+    background: #374151;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    padding: .35rem 0;
+  }
+
+  .day a:hover {
+    background: #c99700;
+    color: #111827;
   }
 </style>
 
-<div class="archive-list">
-  {{ range .Pages.ByDate.Reverse }}
-    <a class="archive-link" href="{{ .RelPermalink }}">
-      {{ .Date.Format "Jan 2, 2006" }}
-    </a>
-  {{ end }}
-</div>
+{{ $pages := .Pages.ByDate.Reverse }}
+
+{{ range $yearGroup := $pages.GroupByDate "2006" }}
+  <section class="year-archive">
+    <h2>{{ $yearGroup.Key }}</h2>
+
+    <div class="months-grid">
+      {{ range $month := seq 1 12 }}
+        {{ $monthName := printf "2026-%02d-01" $month | time.Format "January" }}
+        {{ $monthPages := where $yearGroup.Pages "Date.Month" $month }}
+
+        <div class="month-card">
+          <h2>{{ $monthName }}</h2>
+
+          <div class="days-grid">
+            <div class="day-name">Sun</div>
+            <div class="day-name">Mon</div>
+            <div class="day-name">Tue</div>
+            <div class="day-name">Wed</div>
+            <div class="day-name">Thu</div>
+            <div class="day-name">Fri</div>
+            <div class="day-name">Sat</div>
+
+            {{ range $monthPages.ByDate }}
+              <div class="day">
+                <a href="{{ .RelPermalink }}">{{ .Date.Format "2" }}</a>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
 
 {{ end }}
