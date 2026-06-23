@@ -4,12 +4,31 @@
 
 <p>Browse previous Daily Irish front pages.</p>
 
-{{ range .Pages.ByDate.Reverse }}
-  <article>
-    <h2>
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
-  </article>
-{{ end }}
+<style>
+  .archive-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: .75rem;
+    margin-top: 2rem;
+  }
+
+  .archive-link {
+    display: block;
+    padding: .75rem 1rem;
+    border: 1px solid #374151;
+    border-radius: 10px;
+    background: #1f2937;
+    text-decoration: none;
+    font-weight: 700;
+  }
+</style>
+
+<div class="archive-list">
+  {{ range .Pages.ByDate.Reverse }}
+    <a class="archive-link" href="{{ .RelPermalink }}">
+      {{ .Date.Format "Jan 2, 2006" }}
+    </a>
+  {{ end }}
+</div>
 
 {{ end }}
